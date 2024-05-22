@@ -8,7 +8,7 @@ WORKDIR /workspace
 COPY . . 
 
 # Install any dependencies 
-RUN pip install pytest pytest-embedded
+# RUN pip install pytest pytest-embedded
 
 # Build project
 RUN idf.py build
