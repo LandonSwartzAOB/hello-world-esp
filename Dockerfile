@@ -4,6 +4,10 @@ FROM espressif/idf:latest
 # set up working directory inside docker container
 WORKDIR /workspace
 
+# Making directory
+RUN mkdir project
+WORKDIR /project
+
 # Copying repo into docker container
 COPY . . 
 
