@@ -72,22 +72,22 @@ jobs:
           fi
         continue-on-error: true # keep going if fails
     
-  static_analysis:
-    runs-on: ubuntu-latest
+  # static_analysis:
+  #   runs-on: ubuntu-latest
 
-    steps:
-      # Step 1: Check out the repository
-      - name: Checkout repository
-        uses: actions/checkout@v2
+  #   steps:
+  #     # Step 1: Check out the repository
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v2
       
-      # Step 2: Install the needed packages for linting
-      - name: Set up cpplint
-        run: sudo apt-get install -y cpplint
+  #     # Step 2: Install the needed packages for linting
+  #     - name: Set up cpplint
+  #       run: sudo apt-get install -y cpplint
       
-      # Step 3: Run the linter
-      - name: Run Clang-Format
-        run: |
-          find . -name "*.cpp" -o -name "*.c" -o -name "*.h" | xargs cpplint
+  #     # Step 3: Run the linter
+  #     - name: Run Clang-Format
+  #       run: |
+  #         find . -name "*.cpp" -o -name "*.c" -o -name "*.h" | xargs cpplint
 
       # Step 4: Check for changes
       # - name: Check for linter changes

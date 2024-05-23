@@ -6,3 +6,4 @@ sdkconfig
 sdkconfig.old
 sdkconfig.ci
 __pycache__/
+.cache/
