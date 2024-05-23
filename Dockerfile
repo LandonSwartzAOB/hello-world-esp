@@ -2,14 +2,14 @@
 FROM espressif/idf:latest
 
 # set up working directory inside docker container
-WORKDIR /workspace
+WORKDIR /app
 
 # Making directory
-RUN mkdir project
-WORKDIR /project
+# RUN mkdir project
+# WORKDIR /project
 
 # Copying repo into docker container
-COPY . . 
+COPY . /app
 
 # Install any dependencies 
 # RUN pip install pytest pytest-embedded
