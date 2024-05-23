@@ -85,7 +85,7 @@ jobs:
   #       run: sudo apt-get install -y cpplint
       
   #     # Step 3: Run the linter
-  #     - name: Run Clang-Format
+  #     - name: Run cpp-lint
   #       run: |
   #         find . -name "*.cpp" -o -name "*.c" -o -name "*.h" | xargs cpplint
 
