@@ -1,4 +1,4 @@
-name: Build and Test with Docker
+name: Build, Format, and Analyze
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -36,6 +36,41 @@ jobs:
       - name: Run Docker container
         run: docker run --rm my-esp-idf-image idf.py build
 
-      # Step 6: (Optional) Run tests
+      # Step 5.5: Install dependencies for python
+      # - name: Install pytest dependencies
+      #   run: 
+
+      # # Step 6: (Optional) Run tests
       # - name: Run tests in Docker container
       #   run: docker run --rm my-esp-idf-image idf.py test
+
+  formatting:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      # Step 2: Install the needed packages for formating
+      - name: Set up Clang-format
+        run: sudo apt-get install -y clang-format
+      
+      # Step 3: Run the formatter
+      - name: Run Clang-Format
+        run: |
+          find . -name "*.cpp" -o -name "*.c" -o -name "*.h" | xargs clang-format -i
+
+      # Step 4: Check for changes
+      - name: Check for formatting changes
+        run: |
+          if [[ $(git status --porcelain) ]]; then
+            echo "Code formatting issues found. Please run Clang-Format.";
+            exit 1;
+          else
+            echo "No formatting issues found.";
+          fi
+        continue-on-error: true # keep going if fails
+    
+  
+
