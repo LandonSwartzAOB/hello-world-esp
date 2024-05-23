@@ -1,24 +1,18 @@
 # container for code
-FROM espressif/idf:latest
+FROM espressif/idf:latest AS builder
 
 # set up working directory inside docker container
-WORKDIR /app
+WORKDIR /
 
 # Making directory
-# RUN mkdir project
-# WORKDIR /project
+RUN mkdir project
+WORKDIR /project
 
 # Copying repo into docker container
-COPY . /app
+COPY . /project
 
 # Install any dependencies 
 # RUN pip install pytest pytest-embedded
 
 # Build project
-RUN idf.py build
-
-# RUN tests
-RUN idf.py test
-
-# Default command to keep container running
-CMD ["tail", "-f", "/dev/null"]
+# RUN idf.py build
