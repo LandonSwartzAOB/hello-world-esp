@@ -12,6 +12,7 @@ WORKDIR /project
 COPY . /project
 
 # Install any dependencies 
+# RUN apt install python3-pip
 # RUN pip install pytest pytest-embedded
 
 # Build project
