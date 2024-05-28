@@ -1,5 +1,5 @@
 # container for code
-FROM espressif/idf:latest AS builder
+FROM espressif/idf:latest
 
 # set up working directory inside docker container
 WORKDIR /
