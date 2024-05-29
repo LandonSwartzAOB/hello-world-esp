@@ -29,7 +29,7 @@ jobs:
 
       # Step 3: Install the needed packages for formating
       - name: Set up Clang-format
-        run: sudo apt-get install -y clang-format
+        run: apt-get install -y clang-format
 
       # Step 4: Run the formatter
       - name: Run Clang-Format
