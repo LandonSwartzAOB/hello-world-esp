@@ -12,8 +12,8 @@ jobs:
   build-format-analyze:
     runs-on: ubuntu-latest
 
-    container:
-      image: espressif/idf:v5.2.1
+    # container:
+    #   image: espressif/idf:v5.2.1
 
     steps:
       # Step 1: Check out the repository
@@ -23,8 +23,14 @@ jobs:
           submodules: 'recursive'
 
       # Step 2: Build the repo to make sure it builds
-      - name: Build repo
-        run: idf.py build
+      - name: Build with esp-idf
+        uses: espresif/esp-idf-ci-action@v1
+        with:
+          esp_idf_version: v5.2.1
+          target: esp32
+          # path: 
+      # - name: Build repo
+      #   run: idf.py build
         # continue-on-error: true
 
       # # Step 3: Install the needed packages for formating
@@ -51,7 +57,7 @@ jobs:
       - name: Set up clang-tidy with idf
         run: | 
           idf_tools.py install esp-clang
-          . ./$IDF_TOOLS_PATH/idf/export.sh
+          . ./$IDF_PATH/export.sh
 
       # Step 7; Performing static analysis
       - name: Perform static analysis
