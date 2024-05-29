@@ -24,7 +24,7 @@ jobs:
 
       # Step 2: Build the repo to make sure it builds
       - name: Build with esp-idf
-        uses: espresif/esp-idf-ci-action@v1
+        uses: espressif/esp-idf-ci-action@v1
         with:
           esp_idf_version: v5.2.1
           target: esp32
