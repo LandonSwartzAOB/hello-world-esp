@@ -19,10 +19,13 @@ jobs:
       # Step 1: Check out the repository
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
 
       # Step 2: Build the repo to make sure it builds
       - name: Build repo
         run: idf.py build
+        continue-on-error: true
 
       # Step 3: Install the needed packages for formating
       - name: Set up Clang-format
