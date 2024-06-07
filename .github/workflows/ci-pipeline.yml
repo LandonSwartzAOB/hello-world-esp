@@ -23,14 +23,27 @@ jobs:
           submodules: 'recursive'
 
       # Step 2: Build the repo to make sure it builds
-      # - name: Build with esp-idf
-      #   uses: espressif/esp-idf-ci-action@v1
-      #   with:
-      #     esp_idf_version: v5.2.1
-      #     target: esp32
-      - name: Build repo
-        run: idf.py build
+      - name: Build with esp-idf
+        uses: espressif/esp-idf-ci-action@v1
+        with:
+          esp_idf_version: v5.2.1
+          target: esp32
+
+      # Step 3: Store Artifacts
+      - name: Store Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello-world-esp.bin
+          path: |
+            build/hello-world-esp.bin
+      # - name: Build repo
+      #   run: idf.py build
         # continue-on-error: true
+
+      # Step 3: Run test application
+      # - name: Run Tests
+      #   run: |
+      #       cd test/ | idf.py qemu 
 
       # # Step 3: Install the needed packages for formating
       # - name: Set up Clang-format
