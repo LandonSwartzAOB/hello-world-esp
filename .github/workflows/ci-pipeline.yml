@@ -12,8 +12,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    container:
-      image: espressif/idf:v5.2.1
+    # container:
+    #   image: espressif/idf:v5.2.1
 
     steps:
       # Step 1: Check out the repository
