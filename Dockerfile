@@ -1,19 +1,9 @@
-# container for code
-FROM espressif/idf:latest
+# Use an Ubuntu base image
+FROM bestbunsintown/my-esp-image:latest
 
-# set up working directory inside docker container
-WORKDIR /
+WORKDIR /app
 
-# Making directory
-RUN mkdir project
-WORKDIR /project
+COPY . /app
 
-# Copying repo into docker container
-COPY . /project
+CMD ["bash"]
 
-# Install any dependencies 
-# RUN apt install python3-pip
-# RUN pip install pytest pytest-embedded
-
-# Build project
-# RUN idf.py build
