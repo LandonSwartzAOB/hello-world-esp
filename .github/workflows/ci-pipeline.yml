@@ -11,15 +11,14 @@ on:
 jobs:
   build-and-format:
     runs-on: ubuntu-latest
+  
+    container:
+      image: bestbunsintown\my-esp-image:latest
 
     steps:
       # Step 1: Check out the repository
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      # Step 2: Set up Docker Buildx
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
 
       # Step 3: Log in to Docker Hub (optional, if you need to push images)
       # - name: Log in to Docker Hub
@@ -30,19 +29,8 @@ jobs:
 
       # Step 4: Build the Docker image
       - name: Build Docker image
-        run: docker build -t my-esp-idf-image .
+        run:  idf.py build
 
-      # Step 5: Run the Docker container and build the project
-      - name: Run Docker container
-        run: docker run --rm my-esp-idf-image idf.py build
-
-      # Step 5.5: Install dependencies for python
-      # - name: Install pytest dependencies
-      #   run: 
-
-      # # Step 6: (Optional) Run tests
-      # - name: Run tests in Docker container
-      #   run: docker run --rm my-esp-idf-image idf.py test
 
   formatting:
     runs-on: ubuntu-latest
