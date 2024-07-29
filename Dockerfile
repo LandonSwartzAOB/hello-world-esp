@@ -5,5 +5,7 @@ WORKDIR /app
 
 COPY . /app
 
-CMD ["bash"]
+ENTRYPOINT ["/entrypoint.sh"]
+
+# CMD ["bash"]
 
