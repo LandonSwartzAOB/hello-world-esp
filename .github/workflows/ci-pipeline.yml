@@ -27,5 +27,6 @@ jobs:
 
       # Step 4: Build the Docker image
       - name: Build Docker image
-        run:  idf.py build
+        run:  docker run --rm my-esp-image /bin/bash -c "
+              idf.py build"
 
