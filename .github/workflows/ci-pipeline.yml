@@ -11,9 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-  
-    container:
-      image: bestbunsintown/my-esp-image:latest
 
     steps:
       # Step 1: Check out the repository
@@ -22,6 +19,10 @@ jobs:
         with:
           submodules: 'recursive'
 
-      # Step 2: Run entrypoint script
-      - name: Run build script
-        run: /app/entrypoint.sh
+      # Step 2: Build the Docker image
+      - name: Build Docker image
+        run: docker build -t my-esp-image .
+
+      # Step 3: Run container with entrypoint script
+      - name: Run entrypoint script
+        run: docker run --rm my-esp-image
