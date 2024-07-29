@@ -26,3 +26,7 @@ jobs:
       # Step 3: Run container with entrypoint script
       - name: Run entrypoint script
         run: docker run --rm my-esp-image
+
+      # Step 4: Format the repository inside the Docker container
+      - name: Format the repository
+        run: docker run --rm -v ${{ github.workspace }}:/app my-esp-image /bin/bash -c 'clang-format -i $(find /app -name "*.h" -o -name "*.c")'
